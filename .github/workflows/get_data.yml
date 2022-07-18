@@ -1,8 +1,8 @@
 name: Data link to OxCGRT
 on:
-#  push
-  schedule:
-    - cron: '10 2-23 * * *'
+  push
+# schedule:
+#   - cron: '1 2-23 * * *'
 
 jobs:
   build:
@@ -14,9 +14,6 @@ jobs:
       - name: Download raw csv from OxCGRT database
         run: |
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new' -s -f -o 'data/OxCGRT_nat_latest.csv'
-#          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=changes_responses' -s -f -o 'data/OxCGRT_latest_responses.csv'
-#          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=changes_all' -s -f -o 'data/OxCGRT_latest_allchanges.csv'
-#          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=combined' -s -f -o 'data/OxCGRT_latest_combined.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=vaccine_full' -s -f -o 'data/OxCGRT_vaccines_full.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes' -s -f -o 'data/OxCGRT_nat_differentiated_withnotes.csv'
           awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("data/OxCGRT_nat_differentiated_withnotes_" year ".csv"); files[year]=1}; print $0 > ("data/OxCGRT_nat_differentiated_withnotes_" year ".csv")}' 'data/OxCGRT_nat_differentiated_withnotes.csv'
@@ -64,6 +61,12 @@ jobs:
          git add .
          git diff-index --quiet HEAD || git commit -m "OxCGRT Data Update" -a
          git push origin master:master
+
+
+#          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=changes_responses' -s -f -o 'data/OxCGRT_latest_responses.csv'
+#          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=changes_all' -s -f -o 'data/OxCGRT_latest_allchanges.csv'
+#          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=combined' -s -f -o 'data/OxCGRT_latest_combined.csv'
+
 
 #      - name: Push changes
 #        uses: ad-m/github-push-action@master
