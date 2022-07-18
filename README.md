@@ -1,22 +1,23 @@
 **UPDATE:**
-<!---- 
-- We have published a new format for our indicators ([/data/OxCGRT_latest_combined.csv](data/OxCGRT_latest_combined.csv)) which combines our ordinal measures of policy strictness with their geographical scope. This is described [below](#getting-data-from-this-github-repository).
--  Our main datasets in this repository also include Brazilian state data.
--  we have published a new indicator for vaccine policy, H7
-- We have changed our data source for cases and deaths from the European Centre for Disease Prevention and Control ([ECDC](https://www.ecdc.europa.eu/en)) to the [JHU CSSE data repository](https://github.com/CSSEGISandData/COVID-19) for all countries and the US States. Data sources for the UK nations and Brazil states remain unaltered.
--  We are creating a mailing list to provide technical users with slightly more detailed release notes, and advance warning of changes to database structure. You can register for these email updates here: http://eepurl.com/hiMsdL 
-- We have updated our new academic citation for the project
-- We have added a new indicator, H8 Protection of elderly people to our datasets 
-- We have added data for 3 new indicators on vaccination policies in a standalone CSV
-- We have included subnational data for Chinese provincial-level jurisdictions in our main data product
-- We have stopped updating data on our E3, E4, and H4 fiscal indicators. The data for these indicators will still be present in the CSV files, but they are not being actively updated beyond August 2021. We plan to actively update the H5 fiscal indicator (government investment in vaccine research).
--->
-- We have added guidance on what constitutes a 0 or a 1 as policies wind down to the [coding interpretation guide](documentation/interpretation_guide.md)
-- We have published our V4 indicator recording mandatory [_vaccination_ policies](documentation/codebook.md#vaccination-policies) and an experimental csv publishing [differentiated vaccination policies](https://github.com/OxCGRT/covid-policy-scratchpad/tree/master/differentiated_vaccination_policies). This indicator joins V1, V2, and V3.
-- We have stopped updating the `OxCGRT_latest_withnotes.csv` file because of GitHub's 100mb file size limit. Instead, we are now publishing `OxCGRT_withnotes_2020.csv` and `OxCGRT_withnotes_2021.csv` as separate files. The `latest_withnotes` file only contains data up until early-September 2021. We will keep it active for a few months, as some people rely on it for scripts, but it will eventually be depricated and removed as it no longer contains our "latest" data.
-- We have a mailing list to provide technical users with slightly more detailed release notes, and advance warning of changes to database structure. You can register for these email updates here: http://eepurl.com/hiMsdL
 
----
+On 25 July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. This results in breaking changes to the csv files published on Github, and the addition of new csv files.
+For those who wish to continue using the original data structure and variables - we have established a [legacy repo](LINK TO REPO) where we will continue to publish updated data in our old format. If you have been using our OxCGRT_latest.csv file, you can access the legacy version of the file at this URL: (INSERT URL for legacy CSV- here you can change the URL without needing to open Github/view new legacy repo)
+All of our [documentation](LINK TO DOCUMENTATION FOLDER) has been updated to reflect these changes, and we have also published a [summary of the changes](LINK TO SUMMARY) separately. 
+
+**For those looking to make a quick update to a script using our main csv files (eg. OxCGRT_latest.csv)**, we recommend:
+
+- Edit indicators C1-C7, H6 and H8 to follow the logic: `CX` to `CXM` (e.g., replace `C1_School closing` with `C1M_School closing`). These indicators report values for the majority of the population vaccinated or non-vaccinated when there is differentiation. 
+- Edit indicator `C8_International travel controls` to be `C8E_V_International travel controls`. This indicator reports the vaccinated value when there is differentiation
+- Edit indices to add `_average` after the index name (e.g., ‘stringencyindex' to ‘stringencyindex_average’).
+
+Note that each of these changes reflect a new and slightly different meaning and interpretation. This is explained in detail in our [codebook](LINK TO CODEBOOK). In general, these indicators will report a lower policy level if there is a lenient policy that applies to a large portion of vaccinated people.
+
+**For those wishing to explore our new expanded dataset, the key changes are:**
+- Data for subnational jurisdictions (USA, Canada, United Kingdom, Brazil, China, India, and Australia) are now published in separate data files. 
+- The following ten indicators are split into separate variables for non-vaccinated (NV) people and vaccinated (V) people where policies differ between these groups: C1, C2, C3, C4, C5, C6, C7, C8, H6 and H8. 
+- If there is no differentiated policy in place, we report a single variable for Everyone (E). We also report the policy that applies to a Majority (M) of people at any point in time, based on vaccination rate. 
+- We publish versions of our indices weighted by vaccination rate.
+
 
 # Oxford Covid-19 Government Response Tracker (OxCGRT)
 
