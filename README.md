@@ -21,7 +21,7 @@ Note that each of these changes reflect a new and slightly different meaning and
 
 # Oxford Covid-19 Government Response Tracker (OxCGRT)
 
-The Oxford Covid-19 Government Response Tracker (OxCGRT) collects systematic information on which governments have taken which measures, and when. This can help decision-makers and citizens understand governmental responses in a consistent way, aiding efforts to fight the pandemic. The OxCGRT systematically collects information on several different common policy responses governments have taken, records these policies on a scale to reflect the extent of government action, and aggregates these scores into a suite of policy indices.
+The Oxford Covid-19 Government Response Tracker (OxCGRT) collects systematic information on which governments have taken which measures, and when. This can help decision-makers and citizens understand governmental responses in a consistent way, aiding efforts to fight the pandemic. The OxCGRT systematically collects information on several different common policy responses governments have taken, records these policies on a scale to reflect the extent of government action, and aggregates these scores into a suite of policy indices. We also collect differentiated policies data where different policies apply to people who are vaccinated and non-vaccinated.
 
 This is a project from the [Blavatnik School of Government](www.bsg.ox.ac.uk). More information on the OxCGRT is available on the school's website: https://www.bsg.ox.ac.uk/covidtracker. This README contains information about using the database.
 
@@ -32,7 +32,7 @@ Our data is made available free to use for any purpose under a Creative Commons 
 
 - _Recommended reference for academic publications_: Thomas Hale, Noam Angrist, Rafael Goldszmidt, Beatriz Kira, Anna Petherick, Toby Phillips, Samuel Webster, Emily Cameron-Blake, Laura Hallas, Saptarshi Majumdar, and Helen Tatlow. (2021). “A global panel database of pandemic policies (Oxford COVID-19 Government Response Tracker).” Nature Human Behaviour. https://doi.org/10.1038/s41562-021-01079-8
 - _Short credit for media use (CC BY 4.0 License)_: Oxford COVID-19 Government Response Tracker, Blavatnik School of Government, University of Oxford.
-- _Full credit for media use (CC BY 4.0 License)_: Thomas Hale, Jessica Anania, Bernardo Andretti de Mello, Noam Angrist, Roy Barnes, Thomas Boby, Emily Cameron-Blake, Alice Cavalieri, Martina Di Folco, Benjamin Edwards, Lucy Ellen, Jodie Elms, Rodrigo Furst, Kaitlyn Green, Rafael Goldszmidt, Laura Hallas, Beatriz Kira, Maria Luciano, Saptarshi Majumdar, Radhika Nagesh, Anna Petherick, Toby Phillips, Annalena Pott, Julia Sampaio, Helen Tatlow, Adam Wade, Samuel Webster, Andrew Wood, Hao Zha, Yuxi Zhang. Oxford COVID-19 Government Response Tracker, Blavatnik School of Government, University of Oxford. 
+- _Full credit for media use (CC BY 4.0 License)_: Thomas Hale, Anna Petherick, Jessica Anania, Bernardo Andretti de Mello, Noam Angrist, Roy Barnes, Thomas Boby, Emily Cameron-Blake, Alice Cavalieri, Martina Di Folco, Benjamin Edwards, Lucy Ellen, Jodie Elms, Rodrigo Furst, Liz Gomes Ribeiro, Kaitlyn Green, Rafael Goldszmidt, Laura Hallas, Beatriz Kira, Maria Luciano, Saptarshi Majumdar, Thayslene Marques Oliveira, Radhika Nagesh, Toby Phillips, Annalena Pott, Julia Sampaio, Helen Tatlow, Adam Wade, Samuel Webster, Andrew Wood, Hao Zha, Yuxi Zhang. Oxford COVID-19 Government Response Tracker, Blavatnik School of Government, University of Oxford. 
 
 
 ---
@@ -41,13 +41,16 @@ Our data is made available free to use for any purpose under a Creative Commons 
 
 OxCGRT collects publicly available information on 21 indicators of government response. This information is collected by a team of over 200 volunteers from the Oxford community and is updated continuously.
 
-We also include statistics on the number of reported Covid-19 cases and deaths in each country. These are taken from the [JHU CSSE data repository](https://github.com/CSSEGISandData/COVID-19) for all countries and the US States. 
+We include statistics on the number of reported Covid-19 cases and deaths in each country. These are taken from the [JHU CSSE data repository](https://github.com/CSSEGISandData/COVID-19) for all countries and the US States. We also include vaccination data in each jurisdiction – using national-level data from [Our World in Data](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv) (the percentage of people fully vaccinated) and a range of other sources for subnational vaccination data in [Australia](https://vaccinedata.covid19nearme.com.au/data/air_residence.json),  [Brazil](https://raw.githubusercontent.com/wcota/covid19br/master/cases-brazil-states.csv), [Great Britain](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv),  [USA](https://github.com/owid/covid-19-data/blob/master/public/data/vaccinations/vaccinations.csv).
+ 
 
 ### Individual policy measures
 
 Full descriptions of the policy indicators and their meaning can be found in our [codebook](documentation/codebook.md). For more detailed guidance about the codebook and how we interpret the indicators, see the [coding interpretation guide](documentation/interpretation_guide.md). This ensures consistency, and standardizes coding across the database.
 
 Eight of the policy indicators (C1-C8) record information on [_containment and closure_ policies](documentation/codebook.md#containment-and-closure-policies), such as school closures and restrictions in movement. Four of the indicators (E1-E4) record [_economic_ policies](documentation/codebook.md#economic-policies) such as income support to citizens or provision of foreign aid. Eight indicators (H1-H8) record [_health system_ policies](documentation/codebook.md#health-system-policies) such as the Covid-19 testing regime or emergency investments into healthcare. Three indicators (V1-V3) record [_vaccination_ policies](documentation/codebook.md#vaccination-policies); a country/region/territory’s priority list, eligible groups, and the individual cost of vaccination.
+
+We also record differentiated policies for vaccinated people (V) and non-vaccinated people (NV) for 10 indicators: C1-C8, H6, and H8. We define differentiated policies to mean policies where vaccinated people can access greater freedoms due to their vaccination status, and are subject to less stringent restrictions. 
 
 Finally, we have a [miscellaneous indicator (M1)](documentation/codebook.md#miscellaneous-policies) for notes that do not fit elsewhere.
 
@@ -62,13 +65,14 @@ To help make sense of the data, we have produced four indices that aggregate the
 
 (_Note: these only include indicators recorded on ordinal scales, so they all exclude E3, E4, H4, H5, and M1._)
 
-The [documentation folder](documentation/) contains an [index methodology](documentation/index_methodology.md) page explaining how the different indexes are calculated and how they are reported for days with incomplete data. This also describes the methodology for the [legacy stringency index](documentation/index_methodology.md#legacy-stringency-index) which is based on the [old](#legacy-database-structure-from-before-25-April-2020) database structure in place prior to 25 April 2020.
+We also produce different iterations of each index giving different weightings to differentiated policies that apply differently to people based on vaccination status. The [documentation folder](documentation/) contains an [index methodology](documentation/index_methodology.md) page explaining how the different indices are calculated and how they are reported for days with incomplete data. This also describes the methodology for the [legacy stringency index](documentation/index_methodology.md#legacy-stringency-index) which is based on the [old](#legacy-database-structure-from-before-25-April-2020) database structure in place prior to 25 April 2020.
 
 ### Subnational data
 
-In addition to country-level data, our primary dataset additionally includes some subnational data. So far we have incorporated data for US states, Brazilian States, UK devolved nations, Canadian provinces and territories, and Chinese provinces into the primary dataset on this covid-policy-tracker repository. These subnational entities are included in our [/data/OxCGRT_latest.csv](data/OxCGRT_latest.csv) and [/data/OxCGRT_latest_withnotes.csv](data/OxCGRT_latest_withnotes.csv). But no other CSVs at this stage.
+In addition to country-level data, our primary dataset additionally includes some subnational data. So far we have incorporated data for US states, Brazilian states, UK devolved nations, Canadian provinces and territories, Chinese provinces, Australian states and territories, and Indian states into the primary dataset on this covid-policy-tracker repository. These subnational entities are included in their own designated folders in the [data](data) folder.
 
-Subnational data can be interpreted using the main [codebook](documentation/codebook.md), with additional guidance on subnational-specific interpretation available in the [documentation folder](documentation/subnational_interpretation.md). The state data included in our primary dataset aims to describe the overall policy environment that applies to residents of the state or equivalent jurisdiction, and so includes policies set by the national government where those values are more stringent than state-level action. For data that focuses only on subnational policies, see our additional datasets in the [OxCGRT/USA-covid-policy](https://github.com/OxCGRT/USA-covid-policy) and [OxCGRT/Brazil-covid-policy](https://github.com/OxCGRT/Brazil-covid-policy) respositories.
+Subnational data can be interpreted using the main [codebook](documentation/codebook.md), with additional guidance on subnational-specific interpretation available in the [documentation folder](documentation/subnational_interpretation.md). The subnational data included in our primary dataset aims to describe the overall policy environment that applies to residents of the state or equivalent jurisdiction, and so includes policies set by the national government where those values are more stringent than state-level action. 
+
 
 ### Our documentation and working papers have more information
 
@@ -76,7 +80,7 @@ The most up-to-date description of database components is here in the [documenta
 
 We have also published a national [working paper](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19) with our national methodology, data collection protocols, and description of the individual indicators. 
 
-### Legacy database structure (from before 25 April 2020)
+### Legacy database structures
 
 Prior to 25 April 2020 the OxCGRT had a structure of 13 indicators (labelled S1-S13). Data up until this point is archived and still available in the [/legacy_data_20200425](legacy_data_20200425/) folder.
 
