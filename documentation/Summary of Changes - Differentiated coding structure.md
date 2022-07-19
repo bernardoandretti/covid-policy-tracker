@@ -3,9 +3,7 @@
 On 25 July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. We now publish two different types of csv in our main data repo: `latest` csvs (which contain a summary selection of our data), and `differentiated with notes csvs (which contain almost all of our data). The structure and contents of these are detailed below:
 
 
-### Summary of changes to the indicators:
-
-
+## Main csv files
 **In the main `latest` csv files**, a summary of the key changes to the data structure is below:
 
 - **Indicators**: 
@@ -24,6 +22,20 @@ On 25 July 2022 the OxCGRT implemented data changes which incorporate different 
   | `C1M`, `C2M`, `C3M`, `C4M`, `C5M`, `C6M`, `C7M`, `H6M`, `H8M` | Reports either E value if no differentiation, or the V or NV value if differentiated policies are in place, depending on which proportion of population are V or NV | Reports: <br> - % people vaccinated, except for India and China subnational data  <br> - ‘MV’ (Majority Vaccinated) for China and India subnational data  <br> - ‘MNV’ (Majority Non-Vaccinated) for China and India subnational data |
   |`C8EV` | Reports either E value if no differentiation, or the vaccinated value V | Reports: <br> - % people vaccinated, except for India and China subnational data  <br> - ‘MV’ (Majority Vaccinated) for China and India subnational data  <br> - ‘MNV’ (Majority Non-Vaccinated) for China and India subnational data |
 
+
+- **Indices**:
+
+  - Stringency, Government Response, and Containment and Health indices take on the ‘Average’ value (e.g. ‘SI_Average’) . Values in the ‘Average’ column can report either:
+    <br> - Everyone (E) value from indicators if no differentiation
+    <br> - Weighted average if there are differentiated (V/NV) policies, weighted by % national/subnational level vaccination data whenever available (reported in ‘Population vaccinated’ column)
+    <br> - Simple average value if there is differentiation and no % vaccination data available. Note this only applies for India and China subnational data.
+
+ |  | Government Response Index | Containment and Health Index | Stringency Index | Explanation |
+ | --- | --- | ---| --- | ---|
+  | Average | GRI_Average | CHI_Average | SI_Average | Reports: <br> -  Everyone value from indicators if no differentiation <br> - Weighted average if there are differentiated policies and good % vaccination data <br> -  Simple average value if there is differentiation and no % vaccination data available. Note this only applies for India and China subnational data |
+
+
+## Full withnotes csv files
 
 **In the full `withnotes csv files**, a summary of the key changes to the data structure is below:
 
@@ -44,4 +56,24 @@ Per indicator:
 - "On this date the proportion of people vaccinated became greater than 50%. The policy reported is now the one applying to vaccinated people, not non-vaccinated people as was previously reported."
 
 
-### Summary of changes to the indices:
+- **Indices**:
+
+The full `withnotes csv files report four different versions of each index:
+
+
+ |  | Non-vaccinated | Vaccinated | Simple Average | Weighted Average |
+ | --- | --- | ---| --- | ---| 
+  | Explanation | Uses `non-vaccinated` policy if present, `everyone` policy if not | Uses `vaccinated` policy if present, `everyone` policy if not | Sum of `non-vaccinated` and `vaccinated` policies/ 2 | Weights index value by the proportion of vaccinated population using `non-vaccinated` and `vaccinated values (not available for China and India subnational data) | 
+  | Government Response Index | `GRI_Nonvax` | `GRI_Vax` | `GRI_SimpleAverage` | `GRI_WeightedAverage` |
+  | Containment and Health Index | `CHI_Nonvax` | `CHI_Vax` | `CHI_SimpleAverage` | `CHI_WeightedAverage` |
+  | Stringency Index | `SI_Nonvax` | `SI_Vax` | `SI_SimpleAverage` | `SI_WeightedAverage` |
+
+
+
+
+
+
+The GRI, SI, and CHI now report an `Average index value. Where population vaccination data are available (% of fully vaccinated people) this is a **Weighted Average**. Where no vaccination data are available, we instead create a dummy that indicates whether the majority of the population is either vaccinated (MV) or non-vaccinated (MNV),  and report a **Simple Average** of the V and NV values.
+- Please note that we report simple averages only for India and China subnational jurisdictions.
+
+
