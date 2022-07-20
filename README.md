@@ -1,8 +1,8 @@
 **UPDATE:**
 
 On 25 July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. This results in breaking changes to the csv files published on Github, and the addition of new csv files.
-For those who wish to continue using the original data structure and variables - we have established a [legacy repo](LINK TO REPO) where we will continue to publish updated data in our old format. If you have been using our OxCGRT_latest.csv file, you can access the legacy version of the file at this URL: (INSERT URL for legacy CSV- here you can change the URL without needing to open Github/view new legacy repo)
-All of our [documentation](LINK TO DOCUMENTATION FOLDER) has been updated to reflect these changes, and we have also published a [summary of the changes](LINK TO SUMMARY) separately. 
+For those who wish to continue using the original data structure and variables - we have established a [legacy repo](/legacy_repository) where we will continue to publish updated data in our old format. If you have been using our OxCGRT_latest.csv file, you can access the legacy version of the file at this URL: (INSERT URL for legacy CSV- here you can change the URL without needing to open Github/view new legacy repo)
+All of our [documentation](/documentation) has been updated to reflect these changes, and we have also published a [summary of the changes](documentation/Summary_of_changes_differentiated_coding.md) separately. 
 
 **For those looking to make a quick update to a script using our main csv files (eg. OxCGRT_latest.csv)**, we recommend:
 
@@ -91,17 +91,41 @@ The OxCGRT is updated continuously in real time. There are numerous ways you can
 ### Getting data from this GitHub repository
 ![Data link to OxCGRT](https://github.com/OxCGRT/covid-policy-tracker/workflows/Data%20link%20to%20OxCGRT/badge.svg) <-- status of connection to OxCGRT database
 
-The [/data](data/) folder in this repo contains recent exports from the OxCGRT database. You are welcome to build applications that draw directly from this repository.
-- The CSV file [`/data/OxCGRT_latest.csv`](data/OxCGRT_latest.csv) reports country/territory- and state-level data presented in "country/territory-day" format (or "state-day" as the case may be), with a list of all indicators for each country/territory as a single row each day. This CSV is updated every hour from the main database, and the badge above shows whether this data link is functioning correctly.
-- The CSV file [`/data/OxCGRT_latest_combined.csv`](data/OxCGRT_latest_combined.csv) reports country/territory- and state-level data in "country/territory-day" format, but gives a single "combined" value for each indicator. As described in the [codebook](documentation/codebook.md), many of our indicators are recorded across two variables: one that records the _strictness_ of the policy, and one that records its _scope_.
-  - This is reported as a combination of the policy level (a number) and the scope flag (a letter: `T` for targetted policies or `G` for general policie; or `F`/`A` flags for indicator E1). For instance, for `C3_Cancel public events` we would have `0`, `1T` (recommend cancelling in some areas), `1G` (recommend cancelling everywhere), `2T` (require cancelling in some areas), `2G` (require cancelling everywhere).
-  - We also include a numerical combination, using the same methodology to [calculate compenents for our indices](documentation/index_methodology.md): a targeted policy is considered a half-step lower than a general jurisdiction-wide policy. For instance, for `C3_Cancel public events` we would have `0`, `0.5` (recommend cancelling in some areas), `1` (recommend cancelling everywhere), `1.5` (require cancelling in some areas), `2` (require cancelling everywhere).
-- The CSV files [`/data/OxCGRT_withnotes_2020.csv`](data/OxCGRT_withnotes_2020.csv) and [`/data/OxCGRT_withnotes_2021.csv`](data/OxCGRT_withnotes_2021.csv) reports country/territory- and state-level data in "country/territory-day" format _with_ a column of notes from our data collectors for each indicator. This is also updated every hour from the main database. Please note that some of the comments contain commas and other characters interpreted as a delimiter, and so may cause problems when parsing this CSV file.
-  - The CSV file [`/data/OxCGRT_latest_withnotes.csv`](data/OxCGRT_latest_withnotes.csv) is a legacy file that contains all the `withnotes data` from January 2020 until September 2021. **The title is misleading, it does not contain the latest data and will eventually be removed.** Please use [`/data/OxCGRT_withnotes_2021.csv`](data/OxCGRT_withnotes_2021.csv) if you want the latest data with notes.
-- The CSV file [`/data/OxCGRT_latest_allchanges.csv`](data/OxCGRT_latest_allchanges.csv) reports country/territory-level data with a list of every _change_ to the database. Every time a policy value changes, or every time a note is added to an indicator, it is represented with it's own new row. (This does not include subnational data.)
-- The [`/data/timeseries`](data/timeseries/) folder reports country/territory-level data as individual timeseries for each indicator (except for the non-ordinal indicators E3, E4, H4, H5 and M1) in CSV format, as well as a combined Excel file with a tab for each indicator. This is updated periodically – usually daily – and the date will be listed in the commit description and at the bottom of each sheet. (This does not include subnational data.)
-- The CSV file [`/data/OxCGRT_US_states_temp.csv`](data/OxCGRT_US_states_temp.csv) is a temporary CSV that presents _only US state-level data_ in "state-day" format, with a column of notes from our data collectors for each indicator. This is updated manually.
-- The CSV file [`/data/OxCGRT_vaccines_full.csv`](data/OxCGRT_vaccines_full.csv) reports country/region/territory data presented in "country/region/territory-day" format, for the three summary vaccine indicators (V1, V2, V3) and 50 subcategories for eligible groups for vaccination for each country/region/territory as a single row each day.
+### Data Folder README
+
+
+On 25 July 2022 the OxCGRT main Github repo was changed. It now includes data changes which incorporate different policies applying to vaccinated and non-vaccinated people, which resulted in new csv files. We will also keep our previous csvs updated in the new legacy repo.
+
+
+Below is a summary of what is contained in each csv file, what each abbreviation represents, and a list of the contents of each folder. The [codebook](/documentation/codebook.md) and [index methodology](documentation/index_methodology.md) documentation contains more information about what each indicator and index represents.
+
+
+| Csv file  | Jurisdictions | Contains  | Reports | Data user notes  |
+| ---  | --- | ---  | --- | --- |
+|timeseries <br> (multiple CSVs)| All jurisdictions in one file | A single variable for each indicator: <br> - For C1-C7, H6 and H8, this is the `majority` (M) version <br> - For C8 this is C8EV <br> - For V1-V4 these are the summary indicators <br> A single `average` version of each index | Country/territory-level data as individual timeseries for each indicator in CSV format, as well as a combined Excel file with a tab for each indicator | Each indicator and index is presented as a separate CSV or a separate worksheet in timeseries.xlsx. <br> Each CSV reports a single indicator arranged in time series format |
+| vaccines_all | All jurisdictions in one file | All vaccine indicators | Country/region/territory data presented in "country/region/territory-day" | This is the only file that contains data for V1-V4 organised by all 53 categories, other files only contain the summary indicators|
+| latest | All national  jurisdictions in one file.  Separate folders by country for subnational data | A single variable for each indicator: <br> -  For C1-C7, H6 and H8, this is the ‘majority’ (M) version <br> -  For C8 this is C8EV <br> -  For V1-V4 these are the summary indicators <br> A single `average` version of each index |Country/territory- and state-level data presented in "country/territory-day" format (or "state-day" as the case may be), with a list of all indicators for each country/territory as a single row each day |
+| latest_all changes | All national  jurisdictions in one file | A single variable for each indicator: <br> -  For C1-C7, H6 and H8, this is the ‘majority’ (M) version <br> -  For C8 this is C8EV <br> -  For V1-V4 these are the summary indicators <br> A single `average` version of each index | Reports country/territory-level data with a list of every change to the database. Every time a policy value changes, or every time a note is added to an indicator, it is represented with its own new row | All indicators, highlights changes in this order: Previous Policy - Current Policy - Current Note - Note used to change policy
+| latest_combined* | All national  jurisdictions in one file.  Separate folders by country for subnational data | All national  jurisdictions in one file | A single variable for each indicator: <br> -  For C1-C7, H6 and H8, this is the ‘majority’ (M) version <br> -  For C8 this is C8EV <br> -  For V1-V4 these are the summary indicators <br> A single `average` version of each index | Country/territory- and state-level data in "country/territory-day" format, but gives a single "combined" value for each indicator | Latest with policies recorded as 1G, 2G etc instead of separate Policy (1, 2, 3 etc) and Flag (0/1) columns |
+| latest_responses | All national  jurisdictions in one file. Separate folders by country for subnational data | A single variable for each indicator: <br> -  For C1-C7, H6 and H8, this is the ‘majority’ (M) version <br> -  For C8 this is C8EV <br> -  For V1-V4 these are the summary indicators <br> A single `average` version of each index | | Duration of policy codes for a country along with initial notes. Sorted by PolicyType - PolicyCode - Start Date - End Date - Initial Note | 
+| differentiated_withnotes <br> (split into 2020, 2021, and 2022 files) | All national  jurisdictions in one file. Separate folders by country for subnational data | - All versions of C, E, and H indicators (eg. includes E, NV, N, and M versions where there is differentiated coding) <br> - Summary variables for V1-V4  <br> - Four versions of each index (with different weighting)  <br> - Detailed notes explaining our policy coding | Reports country/territory- and state-level data in "country/territory-day" format with a column of notes from our data collectors for each indicator | This is the only csv file which contains notes. Split into years due to size |
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+*Note: In the `latest_combined` files, please note that as described in the codebook, many of our indicators are recorded across two variables: one that records the strictness of the policy, and one that records its scope. 
+- This is reported as a combination of the policy level (a number) and the scope flag (a letter: T for targeted policies or G for general policie; or F/A flags for indicator E1). For instance, for C3_Cancel public events we would have 0, 1T (recommend cancelling in some areas), 1G (recommend cancelling everywhere), 2T (require cancelling in some areas), 2G (require cancelling everywhere).
+- We also include a numerical combination, using the same methodology to calculate compenents for our indices: a targeted policy is considered a half-step lower than a general jurisdiction-wide policy. For instance, for C3_Cancel public events we would have 0, 0.5 (recommend cancelling in some areas), 1(recommend cancelling everywhere), 1.5 (require cancelling in some areas), 2 (require cancelling everywhere).
 
 ### Getting data through our API
 You can also get some OxCGRT national-level data through our API. Documentation for this is [published here](https://covidtracker.bsg.ox.ac.uk/about-api).
