@@ -64,8 +64,6 @@ jobs:
           rm 'Legacy Repository/Legacy Repo Jul22/OxCGRT_withnotes.csv'
           
           
-          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {jurisdiction="STATE_TOTAL"; if(! files[jurisdiction]) {print header > ("data/Brazil/OxCGRT_withnotes_" jurisdiction ".csv")
-
       - name: Commit changes
         run: |
          git config --local user.email "action@github.com"
