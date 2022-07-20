@@ -5,7 +5,7 @@
 
 ### Updates
 
-On 10 July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. We now publish eight versions of each index. Our [legacy repo](/Legacy Repository) also publishes the original simple average indices.
+On 10 July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. We now publish eight versions of each index. Our [legacy repo](/Legacy_Repository) also publishes the original simple average indices.
 
 The methodology is structured as follows:
 
