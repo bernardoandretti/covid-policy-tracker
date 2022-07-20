@@ -86,30 +86,11 @@ Below is a summary of what is contained in each csv file, what each abbreviation
 FROM TOBY: IT WOULD BE GOOD TO ADD A SIMPLE TABLE LIKE THIS:
 | File designation | E | NV | V | M* |
 | --- | --- | --- | --- | --- |
-| [‘latest’](/data) | x | x | x | yes |
+| [`latest`](/data) | x | x | x | yes |
+| [`latest_all_changes`](/data) | x | x | x | yes |
+| [`latest_combined*`](/data) | x | x | x | yes |
 | [`differentiated withnotes`](/data) | yes | yes | yes | yes |
-
-| Csv file | Jurisdictions | Contains | Reports | Data user notes |
-| --- | --- | --- | --- | --- |
-|timeseries <br> (multiple CSVs)| All jurisdictions in one file | A single variable for each indicator: <br> - For C1-C7, H6 and H8, this is the `majority` (M) version <br> - For C8 this is C8EV <br> - For V1-V4 these are the summary indicators <br> A single `average` version of each index | Country/territory-level data as individual timeseries for each indicator in CSV format, as well as a combined Excel file with a tab for each indicator | Each indicator and index is presented as a separate CSV or a separate worksheet in timeseries.xlsx. <br> Each CSV reports a single indicator arranged in time series format |
-| vaccines_all | All jurisdictions in one file | All vaccine indicators | Country/region/territory data presented in "country/region/territory-day" | This is the only file that contains data for V1-V4 organised by all 53 categories, other files only contain the summary indicators|
-| latest | All national  jurisdictions in one file.  Separate folders by country for subnational data | A single variable for each indicator: <br> -  For C1-C7, H6 and H8, this is the ‘majority’ (M) version <br> -  For C8 this is C8EV <br> -  For V1-V4 these are the summary indicators <br> A single `average` version of each index |Country/territory- and state-level data presented in "country/territory-day" format (or "state-day" as the case may be), with a list of all indicators for each country/territory as a single row each day |
-| latest_all changes | All national  jurisdictions in one file | A single variable for each indicator: <br> -  For C1-C7, H6 and H8, this is the ‘majority’ (M) version <br> -  For C8 this is C8EV <br> -  For V1-V4 these are the summary indicators <br> A single `average` version of each index | Reports country/territory-level data with a list of every change to the database. Every time a policy value changes, or every time a note is added to an indicator, it is represented with its own new row | All indicators, highlights changes in this order: Previous Policy - Current Policy - Current Note - Note used to change policy
-| latest_combined* | All national  jurisdictions in one file.  Separate folders by country for subnational data | All national  jurisdictions in one file | A single variable for each indicator: <br> -  For C1-C7, H6 and H8, this is the ‘majority’ (M) version <br> -  For C8 this is C8EV <br> -  For V1-V4 these are the summary indicators <br> A single `average` version of each index | Country/territory- and state-level data in "country/territory-day" format, but gives a single "combined" value for each indicator | Latest with policies recorded as 1G, 2G etc instead of separate Policy (1, 2, 3 etc) and Flag (0/1) columns |
-| latest_responses | All national  jurisdictions in one file. Separate folders by country for subnational data | A single variable for each indicator: <br> -  For C1-C7, H6 and H8, this is the ‘majority’ (M) version <br> -  For C8 this is C8EV <br> -  For V1-V4 these are the summary indicators <br> A single `average` version of each index | | Duration of policy codes for a country along with initial notes. Sorted by PolicyType - PolicyCode - Start Date - End Date - Initial Note | 
-| differentiated_withnotes <br> (split into 2020, 2021, and 2022 files) | All national  jurisdictions in one file. Separate folders by country for subnational data | - All versions of C, E, and H indicators (eg. includes E, NV, N, and M versions where there is differentiated coding) <br> - Summary variables for V1-V4  <br> - Four versions of each index (with different weighting)  <br> - Detailed notes explaining our policy coding | Reports country/territory- and state-level data in "country/territory-day" format with a column of notes from our data collectors for each indicator | This is the only csv file which contains notes. Split into years due to size |
-
-
-
-
-
-
-
-
-
- 
-
-
+| [`timeseries`](/data) | x | x | x | yes |
 
 
 *Note: In the `latest_combined` files, please note that as described in the codebook, many of our indicators are recorded across two variables: one that records the strictness of the policy, and one that records its scope. 
