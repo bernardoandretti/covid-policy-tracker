@@ -5,12 +5,12 @@
 
 | Summary of July 2022 updates |
 | --- |
-| In July 2022 we adjusted our dataset to account for policies which apply to vaccinated and non-vaccinated people differently. Ten of our indicators are now split into separate variables for non-vaccinated (NV) people and vaccinated (V) people where policies differ between these groups. Here we refer to this as a ‘differentiated policy’. We define differentiated policies to mean policies where vaccinated people can access greater freedoms due to their vaccination status, and are subject to less stringent restrictions. An example of this is if vaccinated people who can present a vaccine pass/passport can enter public events freely, but non-vaccinated people are banned. This adjustment has resulted in changes to our [‘latest’](/data) csv files (summarising the differentiated data), and the addition of new [‘differentiated withnotes’](/data) files, (containing all the differentiated data). If you are aware of the changes, click [here](#containment-and-closure-policies) for the documentation. |
+| In July 2022 we adjusted our dataset to account for policies which apply to vaccinated and non-vaccinated people differently. Ten of our indicators are now split into separate variables for non-vaccinated people (eg. `c1nv_schoolclosing`) and vaccinated people (eg. `c1v_schoolclosing`) where policies differ between these groups. Here we refer to this as a ‘differentiated policy’. <br/>We define differentiated policies to mean policies where vaccinated people can access greater freedoms due to their vaccination status, and are subject to less stringent restrictions. An example of this is if vaccinated people who can present a vaccine pass/passport can enter public events freely, but non-vaccinated people are banned. This adjustment has resulted in changes to our [‘latest’](/data) csv files (summarising the differentiated data), and the addition of new [‘differentiated withnotes’](/data) files, (containing all the differentiated data). |
 
-This document is the authoritative codebook for the Oxford Covid-19 Government Response Tracker ([GitHub repo](https://github.com/OxCGRT/covid-policy-tracker), [university website](https://www.bsg.ox.ac.uk/covidtracker)). The dataset contains 21 indicators and a miscellaneous notes field organised into five groups (C, E, H, V, M); we also capture how policies vary based on vaccination status (D) or geographic targeting (G). This codebook is divided into the following seven sections:
+This document is the authoritative codebook for the Oxford Covid-19 Government Response Tracker ([GitHub repo](https://github.com/OxCGRT/covid-policy-tracker), [university website](https://www.bsg.ox.ac.uk/covidtracker)). The dataset contains 21 indicators and a miscellaneous notes field organised into five groups (C, E, H, V, M); we also capture how policies vary based on vaccination status or geographic targeting. This codebook is divided into the following seven sections:
 
-- [D - Differentiation of policies by vaccine status](#differentiation-of-policies-by-vaccine-status)
-- [G - Indicators for targeted policies](#indicators-for-targeted-policies)
+- [Differentiation of policies by vaccine status](#differentiation-of-policies-by-vaccine-status)
+- [Indicators for targeted policies](#indicators-for-targeted-policies)
 - [C - containment and closure policies](#containment-and-closure-policies)
 - [E - economic policies](#economic-policies)
 - [H - health system policies](#health-system-policies)
@@ -23,48 +23,34 @@ Updates to this codebook are recorded in the [changelog](#codebook-changelog) be
 
 ### Differentiation of policies by vaccine status
 
-#### Recording policies for vaccinated and non-vaccinated people
+The following ten indicators now record policies for vaccinated and non-vaccinated people: C1, C2, C3, C4, C5, C6, C7, C8, H6 and H8. The different versions we report for these 10 indicators are:
 
-The following ten indicators now record policies for vaccinated and non-vaccinated people: C1, C2, C3, C4, C5, C6, C7, C8, H6 and H8. 
+- **Everyone (eg. `c1e_schoolclosing`)**: if the same policy applies to everyone, regardless of vaccination status we report the policy as an ‘Everyone’ value. If this is the case, there will then be no values reported in the ‘Non-vaccinated’ or ‘Vaccinated’ variables, and this value is repeated in the ‘Majority’ variable.
+- **Non-vaccinated (eg. `c1nv_schoolclosing`)**: if there is a requirement to present a negative test, or proof of vaccination to gain entry to optional aspects of public life (e.g., events, businesses), it is recorded as a closure to non-vaccinated people. If this is the case, we will also publish the policy that applies to vaccinated people, but there will be no value published in the ‘Everyone’ variable.
+- **Vaccinated (eg. `c1v_schoolclosing`)**: if entry can be gained with just proof of vaccination, we report this as being open for people who are vaccinated. The policy may be a ‘1’ level code if significant operational differences remain, or even a ‘2’ level if vaccinated people are also required to present a negative test, as well as proof of vaccination (this is reported as a closure to reflect this stringency of policy). There will be no value published in the ‘Everyone’ variable if a ‘Vaccinated’ value is published.
+- **Majority (eg. `c1m_schoolclosing`)**:  the ‘Majority’ value reflects either the policy for everyone (E), or the policy applying to the majority of people fully vaccinated in a country, using vaccination rate data to determine if this is the vaccinated or non-vaccinated part of the population. If there are differentiated policies in place, we report the NV value if vaccination rates are under 50% in that jurisdiction, and V value if vaccination rates are above 50%, hence the majority of the population.
+  - reporting the "majority" policy means that sometimes the value of an `M` indicator will change due to the vaccinated rate crossing the 50% value, meaning our `M` indicator would report the `V` value instead of the `NV` value, even though there is no change to goverenment policy on that day. To explain this, we add a note in the notes variable.
+- **Vaccinated or Everyone (only for `c8ev_internationaltravelcontrols`)**:  if there is a policy that applies to everyone (E), we include it. If there are differentiated policies in place, we publish the vaccinated (V) value for C8 in order to report the policies applying to (vaccinated) international arrivals. Because we do not have data on the vaccination rates of prospective travellers (as we do for the domestic population), we cannot publish a ‘majority’ variable. Note that this will not reflect if a country has quarantine requirements for non-vaccinated arrivals (or border closures to non-vaccinated travellers). For this information, users should refer to our [`differentiated withnotes`](/data) file.
 
-In our [`differentiated withnotes`](/data) csv files, the indicators we report are:
+To summarise, depending on whether or not a country has policies differentiated by vaccine status, we will publish some combination of the following versions of each indicator.
 
+| Policy setting | E | NV | V | M / EV |
+| --- | --- | --- | --- | --- |
+| The same policy applies to everyone | yes | x | x | yes |
+| There is a differentiated policy | x | yes | yes | yes |
 
-- **Everyone (C1E, C2E, C3E, C4E, C5E, C6E, C7E, C8E, H6E, H8E)**: if the same policy applies to everyone, regardless of vaccination status we report the policy as an ‘Everyone’ value. If this is the case, there will then be no values reported in the ‘Non-vaccinated’ or ‘Vaccinated’ variables, and this value is repeated in the ‘Majority’ variable.
-- **Non-vaccinated (C1NV, C2NV, C3NV, C4NV, C5NV, C6NV, C7NV, C8NV, H6NV, H8NV)**: if there is a requirement to present a negative test, or proof of vaccination to gain entry to optional aspects of public life (e.g., events, businesses), it is recorded as a closure to non-vaccinated people. If this is the case, we will also publish the policy that applies to vaccinated people, but there will be no value published in the ‘Everyone’ variable.
-- **Vaccinated (C1V, C2V, C3V, C4V, C5V, C6V, C7V, C8V, H6V, H8V)**: if entry can be gained with just proof of vaccination, we report this as being open for people who are vaccinated. The policy may be a ‘1’ level code if significant operational differences remain, or even a ‘2’ level if vaccinated people are also required to present a negative test, as well as proof of vaccination (this is reported as a closure to reflect this stringency of policy). There will be no value published in the ‘Everyone’ variable if a ‘Vaccinated’ value is published.
-- **Majority (C1M, C2M, C3M, C4M, C5M, C6M, C7M, C8M, H6M, H8M)**:  the ‘Majority’ value reflects either the policy for everyone (E), or the policy applying to the majority of people fully vaccinated in a country, using vaccination rate data to determine if this is the vaccinated or non-vaccinated part of the population. If there are differentiated policies in place, we report the NV value if vaccination rates are under 50% in that jurisdiction, and V value if vaccination rates are above 50%, hence the majority of the population. 
-
-|  | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | H6 | H8|
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Everyone (E) | maybe (OR NV/V) | maybe (OR NV/V) | maybe (OR NV/V) |maybe (OR NV/V) |maybe (OR NV/V)  | maybe (OR NV/V) | maybe (OR NV/V) | maybe (OR NV/V) | maybe (OR NV/V) | maybe (OR NV/V) |
-| Non-vaccinated (NV) | maybe (OR E) |maybe (OR E) | maybe (OR E) |maybe (OR E) |maybe (OR E)  |maybe (OR E) | maybe (OR E) | maybe (OR E) | maybe (OR E) | maybe (OR E) |
-| Vaccinated (V)| maybe (OR E) |maybe (OR E) | maybe (OR E) |maybe (OR E) |maybe (OR E)  | maybe (OR E) | maybe (OR E) | maybe (OR E) | maybe (OR E) | maybe (OR E) |
-| Majority (M)* | yes |yes |yes |yes |yes  | yes | yes | yes | yes | yes |
-
-
-In our [‘latest’](/data) csv files, the indicators we report are:
-
-- **Majority  (C1M, C2M, C3M, C4M, C5M, C6M, C7M, H6M, H8M)**: if there is a policy that applies to everyone (E), we report it. If there are differentiated policies in place, we report the policy that applies to the majority of people, using fully vaccinated rate data to determine if this is the vaccinated (V) or non-vaccinated (NV) policy. 
-- **Vaccinated or Everyone (C8EV)**:  if there is a policy that applies to everyone (E), we report it. If there are differentiated policies in place, we publish the vaccinated (V) value for C8 when there is differentiation,  in order to report the policies applying to (vaccinated) international arrivals. Because we do not have data on the vaccination rantes of prospective travellers (as we do for the domestic population), we cannot publish a ‘majority’ variable. Note that this will not reflect if a country has quarantine requirements for non-vaccinated arrivals (or border closures to non-vaccinated travellers). For this information, users should refer to our [`differentiated withnotes`](/data) file.
+For most indicators with differentiated policies, the `M` (majority, eg. `C1M_schoolclosing`) variable is the only variable that provides an uninterrupted series of data; it is always populated. For C8, there is no `M` version, but we instead publish `C8EV_internationaltravelcontrols` to create an uninteruppted series.
 
 |  | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | H6 | H8|
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Majority (M)* | yes |yes |yes |yes |yes  | yes | yes |  | yes | yes |
+| Majority (M) | yes | yes | yes | yes | yes  | yes | yes |  | yes | yes |
 | Vaccinated or Everyone (EV) |  | | | |  |  |  | yes |  |  |
-
-
-*Note: reporting the Majority value means that sometimes an indicator value will change due to the % vaccinated value crossing the 50% value, meaning the V value is reported, not the NV value. To explain this, we add the below note to the ‘differentiated withnotes’ file:
-
-- "On this date the proportion of people vaccinated became greater than 50%. The policy reported is now the one applying to vaccinated people, not non-vaccinated people as was previously reported."
-
 
 To calculate majority (M) indicators, we use the following variable:
 
-
 | ID | Name | Description | Measurement | Coding |
 | --- | --- | --- | --- | --- |
-|  | populationvaccinated | Record the percentage of fully vaccinated population in the jurisdiction, or a binary indicator of majority (non-)vaccinated, depending on data availability. <br/> <br/> We primarily source this data from [Our World In Data’s](https://ourworldindata.org/covid-vaccinations)  'fullyvaccinatedperhundred' data series | Percentage OR binary indicator | Number - the proportion of the population that is reported as vaccinated by that jurisdiction <br/> MNV - the majority of the population is unvaccinated (used in jurisdictions where we do not have regular vaccination rate data) <br/> MV - the majority of the population is vaccinated (used in jurisdictions where we do not have regular vaccination rate data) <br/> Blank - no data |
+|  | `populationvaccinated` | Record the percentage of fully vaccinated population in the jurisdiction, or a binary indicator of majority (non-)vaccinated, depending on data availability. <br/> <br/> We primarily source this data from [Our World In Data’s](https://ourworldindata.org/covid-vaccinations)  'fullyvaccinatedperhundred' data series | Percentage OR binary indicator | Number - the proportion of the population that is reported as vaccinated by that jurisdiction <br/> MNV - the majority of the population is unvaccinated (used in jurisdictions where we do not have regular vaccination rate data) <br/> MV - the majority of the population is vaccinated (used in jurisdictions where we do not have regular vaccination rate data) <br/> Blank - no data |
 
 
 ### Indicators for targeted policies
@@ -99,7 +85,7 @@ We have stopped updating data on our E3, E4, and H4 fiscal indicators. The data 
 | |  `c6e_flag`<br/> `c6nv_flag`<br/> `c6v_flag`<br/> `c6m_flag` | | Binary flag for geographic scope | 0 - targeted <br/>1- general <br/>Blank - no data |
 | C7 | `c7e_restrictionsoninternalmovement`<br/> `c7nv_restrictionsoninternalmovement`<br/> `c7v_restrictionsoninternalmovement` <br/>`c7m_restrictionsoninternalmovement` | Record restrictions on internal movement between cities/regions | Ordinal scale | 0 - no measures <br/>1 - recommend not to travel between regions/cities <br/>2 - internal movement restrictions in place <br/>Blank - no data |
 | |  `c7e_flag`<br/> `c7nv_flag`<br/> `c7v_flag`<br/> `c7m_flag` | | Binary flag for geographic scope | 0 - targeted <br/>1- general <br/>Blank - no data |
-| C8 | `c8e_internationaltravelcontrols`<br/> `c8nv_internationaltravelcontrols`<br/> `c8e_internationaltravelcontrols` | Record restrictions on international travel <br/><br/>Note: this records policy for foreign travellers, not citizens | Ordinal scale | 0 - no restrictions <br/>1 - screening arrivals <br/>2 - quarantine arrivals from some or all regions <br/>3 - ban arrivals from some regions <br/>4 - ban on all regions or total border closure <br/>Blank - no data |
+| C8 | `c8e_internationaltravelcontrols`<br/> `c8nv_internationaltravelcontrols`<br/> `c8ev_internationaltravelcontrols` | Record restrictions on international travel <br/><br/>Note: this records policy for foreign travellers, not citizens | Ordinal scale | 0 - no restrictions <br/>1 - screening arrivals <br/>2 - quarantine arrivals from some or all regions <br/>3 - ban arrivals from some regions <br/>4 - ban on all regions or total border closure <br/>Blank - no data |
 
 ### Economic policies
 
