@@ -41,17 +41,17 @@ Indicator specific examples- Vaccine focus:
 
 | ID | Name | Non-vaccinated | Explanation | Vaccinated | Explanation |
 | --- | --- | --- | --- | --- | --- | 
-| C3 | `c3_publicevents` | 2 | Vaccines required to enter large concerts and sporting events. No exceptions | 0 | Vaccinated people can attend with no restrictions |
-| C8 | `c8_internationaltravelcontrols` | 4 | Non-vaccinated people from all countries cannot enter the country | 3 | Vaccinated people can enter, but some bans on entry to all people remain from specific countries |
-| H6 | `h6_facialcoverings` | 4 | Non-vaccinated people must wear masks at all times | 0 | Vaccinated people do not have to wear masks |
+| C3 | `C3_Public events` | 2 | Vaccines required to enter large concerts and sporting events. No exceptions | 0 | Vaccinated people can attend with no restrictions |
+| C8 | `C8_International travel controls` | 4 | Non-vaccinated people from all countries cannot enter the country | 3 | Vaccinated people can enter, but some bans on entry to all people remain from specific countries |
+| H6 | `H6_Facial coverings` | 4 | Non-vaccinated people must wear masks at all times | 0 | Vaccinated people do not have to wear masks |
 
 Indicator specific examples- PCR test focus:
 
 | ID | Name | Non-vaccinated | Explanation | Vaccinated | Explanation |
 | --- | --- | --- | --- | --- | --- | 
-| C1 | `c1_schoolclosing` | 2 | Students can enter schools with a COVID-19 pass showing negative PCR test or evidence of prior infection | 0 | Students can enter schools with a COVID-19 pass showing vaccination status. No significant operational changes besides this |
-| C2 | `c2_workplaceclosures` | 2 | Patrons must present a negative test OR a vaccine to enter nightclubs | 0 | Vaccinated people can enter nightclubs |
-| C5 | `c5_publictransport` | 2 | Non-vaccinated need a COVID-19 pass with negative PCR test to travel on buses | 1 | Vaccinated people can get on buses without testing requirements, subject to reduced capacity |
+| C1 | `C1_School closing` | 2 | Students can enter schools with a COVID-19 pass showing negative PCR test or evidence of prior infection | 0 | Students can enter schools with a COVID-19 pass showing vaccination status. No significant operational changes besides this |
+| C2 | `C2_Workplace closures` | 2 | Patrons must present a negative test OR a vaccine to enter nightclubs | 0 | Vaccinated people can enter nightclubs |
+| C5 | `C5_Public transport` | 2 | Non-vaccinated need a COVID-19 pass with negative PCR test to travel on buses | 1 | Vaccinated people can get on buses without testing requirements, subject to reduced capacity |
 
 ## Guidance by codebook indicator
 
