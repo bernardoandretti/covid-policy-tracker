@@ -5,7 +5,7 @@
 
 ### Updates
 
-On 10 July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. We now publish eight versions of each index. Our [legacy repo](/Legacy Repo) also publishes the original simple average indices.
+On 10 July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. We now publish eight versions of each index. Our [legacy repo](/Legacy Repository) also publishes the original simple average indices.
 
 The methodology is structured as follows:
 
@@ -40,7 +40,7 @@ For each of these four versions of each index, we then publish two versions:
 - A regular version which will return `null` values if there is not enough data to calculate the index
 - A `_ForDisplay` version which will extrapolate the index to smooth over the last seven days where there is incomplete data.
 
-In our [legacy repo](/Legacy Repo), we publish indices as simple averages of the individual component indicators. Calculations of these indices can be found [below](#index-calculation) 
+In our [legacy repo](/Legacy Repository), we publish indices as simple averages of the individual component indicators. Calculations of these indices can be found [below](#index-calculation) 
 
 
 
@@ -178,7 +178,7 @@ For example, the date at the time of writing was 22 October. The table below giv
 
 ## Legacy stringency index
 
-We also report a legacy stringency index that approximates the logic of the first version of the Stringency Index, which only had seven components under our [old database structure](../legacy_data_20200425) with the old indicators S1-S7. We generally do not recommend using this legacy index, but it may be useful for continuity purposes.
+We also report a legacy stringency index that approximates the logic of the first version of the Stringency Index, which only had seven components under our [old database structure](Legacy Repository/legacy_data_20200425) with the old indicators S1-S7. We generally do not recommend using this legacy index, but it may be useful for continuity purposes.
 
 The legacy indicator only uses seven indicators, and it chooses a single indicator between C3 and C4, and between C6 and C7, selecting whichever of those pairs provides a higher sub-index score. This is because C3 and C4 aim to measure the information previously measured by S3, and similarly for C6, C7 and the old S6. This method, shown in equation 3, faithfully recreates the logic of the old stringency index.
 
