@@ -10,10 +10,10 @@ The Oxford Covid-19 Government Response Tracker ([GitHub repo](https://github.co
 
 This document is structured as follows:
 
-- [Indices](#indices), which layouts the indicators we use for each index calculation, how we operationalize each index version, and how differentiated policies are captured
-- Index calculation, which layouts the formulas for each index calculation
-- Calculating sub-index scores for each indicators, which layouts the details behind sub-index scores
-- Dealing with gaps in the data for display purposes, which layouts how we deal with missing data when calculating our indices
+- [Indices](#indices), which gives a high-level overview of the components of each of our 4 types of indices (the Government Response Index, Containment and Health Index, Stringency Index, and Economic Support Index), as well as the different variations of each.
+- [Index calculation](#index-calculation), which describes the formulas used to calculate each variation of an index from its component indicators.
+- [Calculating sub-index scores for each indicator](#calculating-sub-index-scores-for-each-indicator), describes the process we go through to normalise each indicator into a sub-index
+- [Dealing with gaps for display purposes](#dealing-with-gaps-in-the-data-for-display-purposes), summarises how we deal with missing data when calculating our indices.
 
 ## Indices
 
