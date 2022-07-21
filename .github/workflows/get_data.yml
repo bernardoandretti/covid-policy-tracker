@@ -28,7 +28,7 @@ jobs:
           awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_latest LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_latest LEGACY.csv")}' 'data/OxCGRT_latest LEGACY.csv'
           mv 'data/OxCGRT_BRA_latest LEGACY.csv' 'data/Brazil/OxCGRT_BRA_latest LEGACY.csv'
           mv 'data/OxCGRT_IND_latest LEGACY.csv' 'data/India/OxCGRT_IND_latest LEGACY.csv'
-          find . -name 'data/OxCGRT_***_latest LEGACY.csv' -delete
+          find . -name 'data/OxCGRT*latest LEGACY.csv' -delete
 
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new&countryCode=CAN' -s -f -o 'data/Canada/OxCGRT_CAN_latest.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes&countryCode=CAN' -s -f -o 'data/Canada/OxCGRT_CAN_differentiated_withnotes.csv'
