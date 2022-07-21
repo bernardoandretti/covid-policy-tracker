@@ -1,6 +1,6 @@
 # Methodology for calculating indices
 
-***Index methodology version 4.0 <br/>25 July 2022***
+***Index methodology version 4.0 <br/>27 July 2022***
 
 | **Major update, July 2022** |
 | --- |
@@ -39,7 +39,7 @@ For each of these four versions of each index, we then publish two versions:
 - A regular version which will return `null` values if there is not enough data to calculate the index.
 - A `_ForDisplay` version which will extrapolate the index to smooth over the last seven days where there is incomplete data. This is described further in our discussion below on [dealing with gaps for display purposes](#dealing-with-gaps-in-the-data-for-display-purposes).
 
-In our [legacy repo](/legacy_repository), we publish indices as simple averages of the individual component indicators. Calculations of these indices can be found [below](#index-calculation) 
+In our [legacy repo](https://github.com/OxCGRT/covid-policy-tracker-legacy), we publish indices as simple averages of the individual component indicators. Calculations of these indices can be found [below](#index-calculation) 
 
 
 
@@ -178,7 +178,8 @@ For example, the date at the time of writing was 22 October. The table below giv
 
 ## Legacy stringency index
 
-We also report a legacy stringency index that approximates the logic of the first version of the Stringency Index, which only had seven components under our [old database structure](legacy_repository/legacy_data_20200425) with the old indicators S1-S7. We generally do not recommend using this legacy index, but it may be useful for continuity purposes.
+We also report a legacy stringency index that approximates the logic of the first version of the Stringency Index, which only had seven components under our [old database structure](https://github.com/OxCGRT/covid-policy-tracker-legacy/tree/main/legacy_data_20200425) with the old indicators S1-S7. We generally do not recommend using this legacy index, but it may be useful for continuity purposes.
+
 
 The legacy indicator only uses seven indicators, and it chooses a single indicator between C3 and C4, and between C6 and C7, selecting whichever of those pairs provides a higher sub-index score. This is because C3 and C4 aim to measure the information previously measured by S3, and similarly for C6, C7 and the old S6. This method, shown in equation 3, faithfully recreates the logic of the old stringency index.
 
@@ -192,7 +193,7 @@ Please note that this is NOT present in the differentiated vaccination coding cs
 
 ## Index methodology changelog
 
-- 25 July 2022: differentiated data structure incorporated
+- 27 July 2022: differentiated data structure incorporated
 - 27 September 2021: note to state no longer updating E3, E4 and H4
 - 5 May 2021: replaced '19 indicators' with '20 indicators'
 - 15 March 2021: added H8 Protection of elderly people 
