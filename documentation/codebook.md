@@ -46,11 +46,12 @@ For most indicators with differentiated policies, the `M` (majority, eg. `C1M_Sc
 | Majority (M) | yes | yes | yes | yes | yes  | yes | yes |  | yes | yes |
 | Vaccinated or Everyone (EV) |  | | | |  |  |  | yes |  |  |
 
-To calculate majority (M) indicators, we use the following variable:
+To calculate majority (M) indicators, we use the variable `PopulationVaccinated`. We also include another variable, `MajorityVaccinated` to indicate whether the majority of the population in that country/region/jurisdiction is either vaccinated or non-vaccinated people.
 
 | ID | Name | Description | Measurement | Coding |
 | --- | --- | --- | --- | --- |
-|  | `PopulationVaccinated` | Record the percentage of fully vaccinated population in the jurisdiction, or a binary indicator of majority (non-)vaccinated, depending on data availability. <br/> <br/> We primarily source this data from [Our World In Data’s](https://ourworldindata.org/covid-vaccinations)  'fullyvaccinatedperhundred' data series | Percentage OR binary indicator | Number - the proportion of the population that is reported as vaccinated by that jurisdiction <br/> MNV - the majority of the population is unvaccinated (used in jurisdictions where we do not have regular vaccination rate data) <br/> MV - the majority of the population is vaccinated (used in jurisdictions where we do not have regular vaccination rate data) <br/> Blank - no data |
+|  | `PopulationVaccinated` | Record the percentage of fully vaccinated population in the jurisdiction, or a binary indicator of majority (non-)vaccinated, depending on data availability. <br/> <br/> We primarily source this data from [Our World In Data’s](https://ourworldindata.org/covid-vaccinations)  'fullyvaccinatedperhundred' data series | Percentage OR binary indicator | <ul> <li> Number - the proportion of the population that is reported as vaccinated by that jurisdiction </li><li> MNV - the majority of the population is unvaccinated (used in jurisdictions where we do not have regular vaccination rate data) </li><li> MV - the majority of the population is vaccinated (used in jurisdictions where we do not have regular vaccination rate data) </li><li> Blank - no data </li> </ul> |
+|  | `MajorityVaccinated` | Record a binary indicator of majority (non-)vaccinated. <br/> <br/> We primarily source this data from [Our World In Data’s](https://ourworldindata.org/covid-vaccinations)  'fullyvaccinatedperhundred' data series | Binary indicator | <ul> <li>  MNV - the majority of the population is unvaccinated (used in jurisdictions where we do not have regular vaccination rate data) </li><li> MV - the majority of the population is vaccinated (used in jurisdictions where we do not have regular vaccination rate data) </li><li> Blank - no data </li> </ul> |
 
 
 ### Indicators for targeted policies
