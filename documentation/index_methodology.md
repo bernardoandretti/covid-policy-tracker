@@ -35,6 +35,8 @@ The four versions with substantial differences are denoted as follows:
 - `_SimpleAverage` – takes the sum of `_Nonvax` and `_Vax` indices and divides them by 2.
 - `_WeightedAverage` – takes an average of the `_Nonvax` and `_Vax` indices and weights this by the proportion of the population that are fully vaccinated.
 
+In our simple [`OxCGRT_latest.csv`](/data) CSVs we report indices with the suffix `_Average` (eg. `StringencyIndex_Average`). This is alwauys the weighted average, except for the few jurisdictions for which we do not have vaccinated rate data (and thus cannot calculate a weighted average), in which case it is the simple average.
+
 For each of these four versions of each index, we then publish two versions:
 - A regular version which will return `null` values if there is not enough data to calculate the index.
 - A `_ForDisplay` version which will extrapolate the index to smooth over the last seven days where there is incomplete data. This is described further in our discussion below on [dealing with gaps for display purposes](#dealing-with-gaps-in-the-data-for-display-purposes).
