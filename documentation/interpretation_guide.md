@@ -1,5 +1,5 @@
 # OxCGRT Coding Interpretation Guide
-***Version 2.0 <br/>Date: 25 July 2022***
+***Version 2.0 <br/>Date: 27 July 2022***
 
 This guide details the resolutions of frequently asked [codebook](codebook.md) interpretation queries, where indicators may be interpreted in different ways. This is in order to ensure consistency, and standardize coding across the database. Queries related specifically to subnational data are labelled as such. This guide is structured as follows:
 
@@ -428,7 +428,7 @@ Here we record where categories have been substituted when category not listed i
 
 
  ## Interpretation guide changelog
-- 25 July 2022: V2.0 added the differentiated coding interpretation guide.
+- 27 July 2022: V2.0 added the differentiated coding interpretation guide.
 - 7 June 2022: V1.14 added 0 vs 1 table, edited interpretation for indicators on mask wearing (not considered in ordinal scale)
 - 18 April 2022: V1.13 added detail to V4 interpretation
 - 11 March 2022: V1.12 added V4- Mandatory Vaccination, and detail to H3, V1, and 'Best fit' table
