@@ -24,11 +24,11 @@ jobs:
           awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("data/Australia/OxCGRT_AUS_differentiated_withnotes_" year ".csv"); files[year]=1}; print $0 > ("data/Australia/OxCGRT_AUS_differentiated_withnotes_" year ".csv")}' 'data/Australia/OxCGRT_AUS_differentiated_withnotes.csv'
           rm 'data/Australia/OxCGRT_AUS_differentiated_withnotes.csv'
 
-## For BRAZIL and INDIA need to filter old version:
-#           curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=Compressed' -s -f -o 'legacy_data_202207/OxCGRT_latest.csv'
-#          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload' -s -f -o 'legacy_data_202207/OxCGRT_withnotes.csv'
-#          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("legacy_data_202207/OxCGRT_withnotes_" year ".csv"); files[year]=1}; print $0 > ("legacy_data_202207/OxCGRT_withnotes_" year ".csv")}' 'legacy_data_202207/OxCGRT_withnotes.csv'
-#          rm 'legacy_data_202207/OxCGRT_withnotes.csv'
+          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=Compressed' -s -f -o 'data/OxCGRT_latest LEGACY.csv'
+          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_latest LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_latest LEGACY.csv")}' 'data/OxCGRT_latest LEGACY.csv'
+          mv 'data/OxCGRT_BRA_latest LEGACY.csv' 'data/Brazil/OxCGRT_BRA_latest LEGACY.csv'
+          mv 'data/OxCGRT_IND_latest LEGACY.csv' 'data/India/OxCGRT_IND_latest LEGACY.csv'
+          find . -name 'data/OxCGRT_***_latest LEGACY.csv' -delete
 
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new&countryCode=CAN' -s -f -o 'data/Canada/OxCGRT_CAN_latest.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes&countryCode=CAN' -s -f -o 'data/Canada/OxCGRT_CAN_differentiated_withnotes.csv'
@@ -69,10 +69,17 @@ jobs:
          git push origin master:master
 
 
+
 #          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=changes_responses' -s -f -o 'data/OxCGRT_latest_responses.csv'
 #          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=changes_all' -s -f -o 'data/OxCGRT_latest_allchanges.csv'
 #          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=combined' -s -f -o 'data/OxCGRT_latest_combined.csv'
 
+
+## For BRAZIL and INDIA need to filter old version:
+#           curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=Compressed' -s -f -o 'legacy_data_202207/OxCGRT_latest.csv'
+#          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload' -s -f -o 'legacy_data_202207/OxCGRT_withnotes.csv'
+#          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("legacy_data_202207/OxCGRT_withnotes_" year ".csv"); files[year]=1}; print $0 > ("legacy_data_202207/OxCGRT_withnotes_" year ".csv")}' 'legacy_data_202207/OxCGRT_withnotes.csv'
+#          rm 'legacy_data_202207/OxCGRT_withnotes.csv'
 
 #      - name: Push changes
 #        uses: ad-m/github-push-action@master
