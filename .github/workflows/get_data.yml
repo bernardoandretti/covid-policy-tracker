@@ -28,8 +28,11 @@ jobs:
           awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_latest LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_latest LEGACY.csv")}' 'data/OxCGRT_latest LEGACY.csv'
           mv 'data/OxCGRT_BRA_latest LEGACY.csv' 'data/Brazil/OxCGRT_BRA_latest LEGACY.csv'
           mv 'data/OxCGRT_IND_latest LEGACY.csv' 'data/India/OxCGRT_IND_latest LEGACY.csv'
+          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload' -s -f -o 'data/OxCGRT_withnotes LEGACY.csv'
+          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv")}' 'data/OxCGRT_withnotes LEGACY.csv'
+          mv 'data/OxCGRT_BRA_withnotes LEGACY.csv' 'data/Brazil/OxCGRT_BRA_withnotes LEGACY.csv'
+          mv 'data/OxCGRT_IND_withnotes LEGACY.csv' 'data/India/OxCGRT_IND_withnotes LEGACY.csv'
           find data/ -maxdepth 1 -name 'OxCGRT*LEGACY.csv' -type f -delete
-
 
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new&countryCode=CAN' -s -f -o 'data/Canada/OxCGRT_CAN_latest.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes&countryCode=CAN' -s -f -o 'data/Canada/OxCGRT_CAN_differentiated_withnotes.csv'
