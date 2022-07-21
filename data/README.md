@@ -1,4 +1,4 @@
-On 25 July 2022 the OxCGRT main Github repo was changed. It now includes data changes which incorporate different policies applying to vaccinated and non-vaccinated people, which resulted in new csv files. We will also keep our previous csvs updated in the new legacy repo.
+On 27 July 2022 the OxCGRT main Github repo was changed. It now includes data changes which incorporate different policies applying to vaccinated and non-vaccinated people, which resulted in new csv files. We will also keep our previous csvs updated in the new legacy repo.
 
 
 Below is a summary of what is contained in each  csv file, what each abbreviation represents, and a list of the contents of each folder. The [codebook](/documentation/codebook.md) and [index methodology](/documentation/index_methodology.md) documentation contains more information about what each indicator and index represents.
