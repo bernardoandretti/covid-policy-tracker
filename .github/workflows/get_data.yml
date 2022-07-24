@@ -25,14 +25,15 @@ jobs:
           rm 'data/Australia/OxCGRT_AUS_differentiated_withnotes.csv'
 
           curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=Compressed' -s -f -o 'data/OxCGRT_latest LEGACY.csv'
-          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_latest LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_latest LEGACY.csv")}' 'data/OxCGRT_latest LEGACY.csv'
+          awk --lint -F "," 'NR==1 {header=$0}; NF>1 && NR>1 && ($2=="BRA" || $2=="IND") {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_latest LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_latest LEGACY.csv")}' 'data/OxCGRT_latest LEGACY.csv'
           mv 'data/OxCGRT_BRA_latest LEGACY.csv' 'data/Brazil/OxCGRT_BRA_latest LEGACY.csv'
           mv 'data/OxCGRT_IND_latest LEGACY.csv' 'data/India/OxCGRT_IND_latest LEGACY.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload' -s -f -o 'data/OxCGRT_withnotes LEGACY.csv'
-          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv")}' 'data/OxCGRT_withnotes LEGACY.csv'
+          awk --lint -F "," 'NR==1 {header=$0}; NF>1 && NR>1 && ($2=="BRA" || $2=="IND") {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv")}' 'data/OxCGRT_withnotes LEGACY.csv'
           mv 'data/OxCGRT_BRA_withnotes LEGACY.csv' 'data/Brazil/OxCGRT_BRA_withnotes LEGACY.csv'
           mv 'data/OxCGRT_IND_withnotes LEGACY.csv' 'data/India/OxCGRT_IND_withnotes LEGACY.csv'
-          find data/ -maxdepth 1 -name 'OxCGRT*LEGACY.csv' -type f -delete
+          rm 'data/OxCGRT_latest LEGACY.csv'
+          rm 'data/OxCGRT_withnotes LEGACY.csv'
 
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new&countryCode=CAN' -s -f -o 'data/Canada/OxCGRT_CAN_latest.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes&countryCode=CAN' -s -f -o 'data/Canada/OxCGRT_CAN_differentiated_withnotes.csv'
@@ -72,6 +73,12 @@ jobs:
          git diff-index --quiet HEAD || git commit -m "OxCGRT Data Update" -a
          git push origin master:master
 
+
+
+          
+#          find data/ -maxdepth 1 -name 'OxCGRT*LEGACY.csv' -type f -delete
+#          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv")}' 'data/OxCGRT_withnotes LEGACY.csv'
+#          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_latest LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_latest LEGACY.csv")}' 'data/OxCGRT_latest LEGACY.csv'
 
 
 #          curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=changes_responses' -s -f -o 'data/OxCGRT_latest_responses.csv'
