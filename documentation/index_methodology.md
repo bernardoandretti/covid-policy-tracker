@@ -178,10 +178,9 @@ For example, the date at the time of writing was 22 October. The table below giv
 | 21/10/2020 | 7 | 14 | `null` | 75 |
 | 22/10/2020 (today) | 5 | 14 | `null` | 75 |
 
-## Legacy stringency index
+## April 2020 legacy stringency index
 
-We also report a legacy stringency index that approximates the logic of the first version of the Stringency Index, which only had seven components under our [old database structure](https://github.com/OxCGRT/covid-policy-tracker-legacy/tree/main/legacy_data_20200425) with the old indicators S1-S7. We generally do not recommend using this legacy index, but it may be useful for continuity purposes.
-
+We also report a pre-April 2020 legacy stringency index that approximates the logic of the original version of the Stringency Index, which only had seven components under our old database structure with the old indicators S1-S7 (you can access this data on our [legacy repo](https://github.com/OxCGRT/covid-policy-tracker-legacy)). We generally do not recommend using this legacy index, but it may be useful for continuity purposes.
 
 The legacy indicator only uses seven indicators, and it chooses a single indicator between C3 and C4, and between C6 and C7, selecting whichever of those pairs provides a higher sub-index score. This is because C3 and C4 aim to measure the information previously measured by S3, and similarly for C6, C7 and the old S6. This method, shown in equation 3, faithfully recreates the logic of the old stringency index.
 
