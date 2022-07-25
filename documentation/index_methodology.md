@@ -4,7 +4,7 @@
 
 | **Major update, July 2022** |
 | --- |
-| In July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. We now publish eight versions of each index, including versions that take averages between the policies that apply to vaccinated and non-vaccinated people. Our [legacy repo](https://github.com/OxCGRT/covid-policy-tracker-legacy) also publishes the original indices. |
+| In July 2022 the OxCGRT implemented data changes which incorporate different policies applying to vaccinated and non-vaccinated people. We now publish eight versions of each index, including versions that take averages between the policies that apply to vaccinated and non-vaccinated people. The documentation in this GitHub repository reflects these changes, and we have also published a [PDF summary](https://www.bsg.ox.ac.uk/sites/default/files/OxCGRT%20–%C2%A0What%27s%20changed%20summary%2022%20Jul%202022.pdf). /n/nOur [legacy repo](https://github.com/OxCGRT/covid-policy-tracker-legacy) also publishes the original indices. |
 
 The Oxford Covid-19 Government Response Tracker ([GitHub repo](https://github.com/OxCGRT/covid-policy-tracker), [university website](https://www.bsg.ox.ac.uk/covidtracker)) tracks individual policy measures across 21 indicators. We also calculate several indices to give an overall impression of government activity, and this page describes how these indices are calculated. Changes to this methodology are recorded in the [changelog](#index-methodology-changelog) below.
 
