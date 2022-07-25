@@ -127,7 +127,7 @@ This normalises the different ordinal scales to produce a sub-index score betwee
 
 Note that the database only contains flag values if the indicator has a non-zero value. If a government has no policy for a given indicator (ie. the indicator equals zero) then the corresponding flag is blank/null in the database. For the purposes of calculating the index, this is equivalent to a sub-index score of zero. In other words, _I<sub>j,t</sub>_=0 if _v<sub>j,t</sub>_=0.
 
-![sub-index score equation](https://latex.codecogs.com/svg.image?(5)index%3D%5Cfrac%7B1%7D%7Bk%7D%5Csum_%7Bj%3D1%7D%5E%7Bk%7DI_%7Bj%7D)
+![sub-index score equation](https://latex.codecogs.com/svg.image?(5)I_%7Bj%2Ct%7D%3D100%5Cfrac%7Bv_%7Bj%2Ct%7D-0.5%28F_%7Bj%7D-f_%7Bj%2Ct%7D%29%7D%7BN_%7Bj%7D%7D)
 
 (_if v<sub>j,t</sub>=0 then the function F<sub>j</sub>-f<sub>j,t</sub> is also treated as 0, see paragraph above._)
 
