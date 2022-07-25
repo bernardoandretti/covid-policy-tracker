@@ -80,6 +80,13 @@ For a given jurisdiction, we first calculated indices for the vaccinated and the
 ![weighted avg equation](https://latex.codecogs.com/svg.image?(3)index&space;=&space;[(index_{v}&space;*&space;W_{v})&space;&plus;&space;(index_{nv}&space;*&space;W_{nv})]/100)
 
 
+#### Legacy Repo Indices
+
+All of our indices in our legacy folder are simple averages of the individual component indicators. This is described in equation 4 below where _k_ is the number of component indicators in an index and _I<sub>j</sub>_ is the sub-index score for an individual indicator.
+
+
+![legacy_repo](https://latex.codecogs.com/svg.image?(4)index%3D%5Cfrac%7B1%7D%7Bk%7D%5Csum_%7Bj%3D1%7D%5E%7Bk%7DI_%7Bj%7D)
+
 ## Calculating sub-index scores for each indicator
 
 All of the indices use ordinal indicators where policies a ranked on a simple numerical scale. The project also records five non-ordinal indicators – E3, E4, H4, H5 and M1 – but these are not used in our index calculations. As of August 2021, E3, E4, and H4 will no longer be updated. The data remains present in the CSV files.
@@ -120,7 +127,7 @@ This normalises the different ordinal scales to produce a sub-index score betwee
 
 Note that the database only contains flag values if the indicator has a non-zero value. If a government has no policy for a given indicator (ie. the indicator equals zero) then the corresponding flag is blank/null in the database. For the purposes of calculating the index, this is equivalent to a sub-index score of zero. In other words, _I<sub>j,t</sub>_=0 if _v<sub>j,t</sub>_=0.
 
-![sub-index score equation](https://latex.codecogs.com/png.latex?%282%29%5Cqquad%20I_%7Bj%2Ct%7D%3D100%5Cfrac%7Bv_%7Bj%2Ct%7D-0.5%28F_%7Bj%7D-f_%7Bj%2Ct%7D%29%7D%7BN_%7Bj%7D%7D)
+![sub-index score equation](https://latex.codecogs.com/svg.image?(5)index%3D%5Cfrac%7B1%7D%7Bk%7D%5Csum_%7Bj%3D1%7D%5E%7Bk%7DI_%7Bj%7D)
 
 (_if v<sub>j,t</sub>=0 then the function F<sub>j</sub>-f<sub>j,t</sub> is also treated as 0, see paragraph above._)
 
@@ -182,13 +189,13 @@ For example, the date at the time of writing was 22 October. The table below giv
 
 We also report a pre-April 2020 legacy stringency index that approximates the logic of the original version of the Stringency Index, which only had seven components under our old database structure with the old indicators S1-S7 (you can access this data on our [legacy repo](https://github.com/OxCGRT/covid-policy-tracker-legacy)). We generally do not recommend using this legacy index, but it may be useful for continuity purposes.
 
-The legacy indicator only uses seven indicators, and it chooses a single indicator between C3 and C4, and between C6 and C7, selecting whichever of those pairs provides a higher sub-index score. This is because C3 and C4 aim to measure the information previously measured by S3, and similarly for C6, C7 and the old S6. This method, shown in equation 3, faithfully recreates the logic of the old stringency index.
+The legacy indicator only uses seven indicators, and it chooses a single indicator between C3 and C4, and between C6 and C7, selecting whichever of those pairs provides a higher sub-index score. This is because C3 and C4 aim to measure the information previously measured by S3, and similarly for C6, C7 and the old S6. This method, shown in equation 6, faithfully recreates the logic of the old stringency index.
 
-![legacy stringency equation](https://latex.codecogs.com/png.latex?%283%29%5Cqquad%20SI_%7Blegacy%7D%3D%5Cfrac%7B1%7D%7B7%7D%20%5Cleft%20%28I_%7BC1%7D&plus;I_%7BC2%7D&plus;max%28I_%7BC3%7D%2CI_%7BC4%7D%29&plus;I_%7BC5%7D&plus;max%28I_%7BC6%7D%2CI_%7BC7%7D%29&plus;I_%7BC8%7D&plus;I_%7BH1%7D%20%5Cright%20%29)
+![legacy stringency equation](https://latex.codecogs.com/svg.image?(6)SI_%7Blegacy%7D%3D%5Cfrac%7B1%7D%7B7%7D%20%5Cleft%20%28I_%7BC1%7D&plus;I_%7BC2%7D&plus;max%28I_%7BC3%7D%2CI_%7BC4%7D%29&plus;I_%7BC5%7D&plus;max%28I_%7BC6%7D%2CI_%7BC7%7D%29&plus;I_%7BC8%7D&plus;I_%7BH1%7D%20%5Cright%20%29)
 
-The individual sub-index scores for the legacy index are calculated through a slightly different formula to the one described in equation 2 above. This formula is described in equation 4 below (with a seperate formula for C8, the only indicator in this index without a flagged variable).
+The individual sub-index scores for the legacy index are calculated through a slightly different formula to the one described in equation 2 above. This formula is described in equation 7 below (with a seperate formula for C8, the only indicator in this index without a flagged variable).
 
-![legacy stringency sub-index equation](https://latex.codecogs.com/png.latex?%284%29%5Cqquad%20I_%7Bj%2Ct%7D%3D100%5Cleft%20%28%5Cfrac%7Bv_%7Bj%2Ct%7D&plus;f_%7Bj%2Ct%7D%7D%7BN_%7Bj%7D&plus;1%7D%5Cright%29%5Cquad%5Cmid%5Cquad%20I_%7BC8%2Ct%7D%3D100%5Cleft%28%5Cfrac%7Bv_%7B%20_%7BC8%2Ct%7D%7D%7D%7BN_%7BC8%7D%7D%20%5Cright%29)
+![legacy stringency sub-index equation](https://latex.codecogs.com/svg.image?(7)I_%7Bj%2Ct%7D%3D100%5Cleft%20%28%5Cfrac%7Bv_%7Bj%2Ct%7D&plus;f_%7Bj%2Ct%7D%7D%7BN_%7Bj%7D&plus;1%7D%5Cright%29%5Cquad%5Cmid%5Cquad%20I_%7BC8%2Ct%7D%3D100%5Cleft%28%5Cfrac%7Bv_%7B%20_%7BC8%2Ct%7D%7D%7D%7BN_%7BC8%7D%7D%20%5Cright%29)
 
 Please note that this is NOT present in the differentiated vaccination coding csv. The legacy folder contains the two previous versions of the OxCGRT data structure.
 
