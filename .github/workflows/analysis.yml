@@ -1,7 +1,8 @@
 name: An R workflow to automate daily updates of main repo graphs and timeseries csv
 on:
-  schedule:
-    - cron: '45 7 * * *'
+  push
+#  schedule:
+#    - cron: '45 7 * * *'
 
 jobs:
   build:
@@ -34,7 +35,7 @@ jobs:
           ls
           cd master
           ls
-          Rscript -e 'source("https://raw.githubusercontent.com/saptahash/test_repo/master/mainrepo/githubroutine.r")'
+          Rscript -e 'source("https://github.com/OxCGRT/covid-policy-tracker/blob/differentiated/.github/workflows/analysis.yml")'
 
       - name: Commit changes
         run: |
