@@ -14,6 +14,11 @@ jobs:
       - name: Download raw csv from OxCGRT database
         run: |
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new' -s -f -o 'data/OxCGRT_nat_latest.csv'
+          
+          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=combined_diff' -s -f -o 'data/OxCGRT_nat_latest_combined.csv'
+          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=changes_all_diff' -s -f -o 'data/OxCGRT_nat_latest_allchanges.csv'
+          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=changes_responses_diff' -s -f -o 'data/OxCGRT_nat_latest_responses.csv'
+          
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=vaccine_full' -s -f -o 'data/OxCGRT_vaccines_full.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes' -s -f -o 'data/OxCGRT_nat_differentiated_withnotes.csv'
           awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("data/OxCGRT_nat_differentiated_withnotes_" year ".csv"); files[year]=1}; print $0 > ("data/OxCGRT_nat_differentiated_withnotes_" year ".csv")}' 'data/OxCGRT_nat_differentiated_withnotes.csv'
