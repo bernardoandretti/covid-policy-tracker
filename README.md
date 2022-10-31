@@ -88,15 +88,15 @@ We collect data across five different types of policy indicators (C, E, H, M, V)
 | `latest` | yes | yes | yes | yes | yes | | |
 | `differentiated_withnotes` | yes | yes | yes | yes | yes | | yes |
 | `timeseries` | yes | yes | yes | yes | | |
-| `vaccines_full` | | | | | yes | yes | yes |
+| `vaccines_full` | | | | | yes | yes |
+| `latest_all_changes` | yes | yes | yes | yes | yes | | yes |
+| `latest_responses` | yes | yes | yes | yes | yes | |yes|
+| `latest_combined*` | yes | yes | yes | yes | yes | | |
 
-<!--
-| `latest_all_changes` | yes | yes | yes | yes | | | |
-| `latest_combined*` | yes | yes | yes | yes | | | |
 *Note: In the `latest_combined` files, please note that as described in the codebook, many of our indicators are recorded across two variables: one that records the strictness of the policy, and one that records its scope. 
 - This is reported as a combination of the policy level (a number) and the scope flag (a letter: T for targeted policies or G for general policie; or F/A flags for indicator E1). For instance, for C3_Cancel public events we would have 0, 1T (recommend cancelling in some areas), 1G (recommend cancelling everywhere), 2T (require cancelling in some areas), 2G (require cancelling everywhere).
 - We also include a numerical combination, using the same methodology to calculate compenents for our indices: a targeted policy is considered a half-step lower than a general jurisdiction-wide policy. For instance, for C3_Cancel public events we would have 0, 0.5 (recommend cancelling in some areas), 1(recommend cancelling everywhere), 1.5 (require cancelling in some areas), 2 (require cancelling everywhere).
--->
+
 
 For some of our contained and health indicators (C and H), we differentiate the policies depending on whether they apply to everyone (`E`), non-vaccinated people (`NV`), or vaccinated people (`V`). This information, combined with the vaccination rate, allows us to determine what policy applies to the majority (`M`) of people. We publish different combinations of this information in different files. (Our [codebook](/documentation/codebook.md#differentiation-of-policies-by-vaccine-status) has more information about these differentiated policies.)
 
@@ -105,6 +105,9 @@ For some of our contained and health indicators (C and H), we differentiate the 
 | `latest` | | | | yes |
 | `differentiated_withnotes` | yes | yes | yes | yes |
 | `timeseries` | | | | yes |
+| `latest_all_changes` | | | | yes |
+| `latest_responses` | | | | yes |
+| `latest_combined` | | | | yes |
 
 Prior to July 2022 we published data in a different structure wihtout this differentiated information. We continue to publish data under that old structure in our legacy repo: [OxCGRT/covid-policy-tracker-legacy](https://github.com/OxCGRT/covid-policy-tracker-legacy). Under our pre-July 2022 data structure, we also used to publish files designated `latest_allchanges`, `latest_responses`, and `latest_combined`. We are still working on recreating these with our new differentiated data structure. For now you can still access the older versions on our [legacy repo](https://github.com/OxCGRT/covid-policy-tracker-legacy).
 
