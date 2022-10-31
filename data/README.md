@@ -36,6 +36,7 @@ We collect data across five different types of policy indicators (C, E, H, M, V)
 | `timeseries` | yes | yes | yes | yes | | |
 | `vaccines_full` | | | | | yes | yes |
 | `latest_all_changes` | yes | yes | yes | yes | | | |
+| `latest_responses` | yes | yes | yes | yes | | | |
 | `latest_combined*` | yes | yes | yes | yes | | | |
 
 *Note: In the `latest_combined` files, please note that as described in the codebook, many of our indicators are recorded across two variables: one that records the strictness of the policy, and one that records its scope. 
@@ -52,3 +53,6 @@ For some of our containment and health indicators (C and H), we differentiate th
 | `latest` | | | | yes |
 | `differentiated_withnotes` | yes | yes | yes | yes |
 | `timeseries` | | | | yes |
+| `latest_combined` | | | | yes |
+| `latest_all_changes` | | | | yes |
+| `latest_responses` | | | | yes |
