@@ -35,8 +35,9 @@ We collect data across five different types of policy indicators (C, E, H, M, V)
 | `differentiated_withnotes` | yes | yes | yes | yes | yes | | yes |
 | `timeseries` | yes | yes | yes | yes | | |
 | `vaccines_full` | | | | | yes | yes |
-| `latest_all_changes` | yes | yes | yes | yes | | | |
-| `latest_combined*` | yes | yes | yes | yes | | | |
+| `latest_all_changes` | yes | yes | yes | yes | yes | | yes |
+| `latest_responses` | yes | yes | yes | yes | yes | |yes|
+| `latest_combined*` | yes | yes | yes | yes | yes | | |
 
 *Note: In the `latest_combined` files, please note that as described in the codebook, many of our indicators are recorded across two variables: one that records the strictness of the policy, and one that records its scope. 
 - This is reported as a combination of the policy level (a number) and the scope flag (a letter: T for targeted policies or G for general policie; or F/A flags for indicator E1). For instance, for C3_Cancel public events we would have 0, 1T (recommend cancelling in some areas), 1G (recommend cancelling everywhere), 2T (require cancelling in some areas), 2G (require cancelling everywhere).
@@ -52,3 +53,6 @@ For some of our containment and health indicators (C and H), we differentiate th
 | `latest` | | | | yes |
 | `differentiated_withnotes` | yes | yes | yes | yes |
 | `timeseries` | | | | yes |
+| `latest_all_changes` | | | | yes |
+| `latest_responses` | | | | yes |
+| `latest_combined` | | | | yes |
