@@ -25,13 +25,11 @@ jobs:
           rm 'data/OxCGRT_nat_differentiated_withnotes.csv'
           
           curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload?type=Compressed' -s -f -o 'data/OxCGRT_latest LEGACY.csv'
-          awk --lint -F "," 'NR==1 {header=$0}; NF>1 && NR>1 && ($2=="BRA" || $2=="IND") {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_latest LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_latest LEGACY.csv")}' 'data/OxCGRT_latest LEGACY.csv'
+          awk --lint -F "," 'NR==1 {header=$0}; NF>1 && NR>1 && ($2=="BRA") {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_latest LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_latest LEGACY.csv")}' 'data/OxCGRT_latest LEGACY.csv'
           mv 'data/OxCGRT_BRA_latest LEGACY.csv' 'data/Brazil/OxCGRT_BRA_latest LEGACY.csv'
-          mv 'data/OxCGRT_IND_latest LEGACY.csv' 'data/India/OxCGRT_IND_latest LEGACY.csv'
           curl 'https://oxcgrtportal.azurewebsites.net/api/CSVDownload' -s -f -o 'data/OxCGRT_withnotes LEGACY.csv'
-          awk --lint -F "," 'NR==1 {header=$0}; NF>1 && NR>1 && ($2=="BRA" || $2=="IND") {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv")}' 'data/OxCGRT_withnotes LEGACY.csv'
+          awk --lint -F "," 'NR==1 {header=$0}; NF>1 && NR>1 && ($2=="BRA") {countrycode=$2; if(! files[countrycode]) {print header > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv"); files[countrycode]=1}; print $0 > ("data/OxCGRT_" countrycode "_withnotes LEGACY.csv")}' 'data/OxCGRT_withnotes LEGACY.csv'
           mv 'data/OxCGRT_BRA_withnotes LEGACY.csv' 'data/Brazil/OxCGRT_BRA_withnotes LEGACY.csv'
-          mv 'data/OxCGRT_IND_withnotes LEGACY.csv' 'data/India/OxCGRT_IND_withnotes LEGACY.csv'
           rm 'data/OxCGRT_latest LEGACY.csv'
           rm 'data/OxCGRT_withnotes LEGACY.csv'
           
@@ -59,6 +57,13 @@ jobs:
           curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes&countryCode=CHN' -s -f -o 'data/China/OxCGRT_CHN_differentiated_withnotes.csv'
           awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("data/China/OxCGRT_CHN_differentiated_withnotes_" year ".csv"); files[year]=1}; print $0 > ("data/China/OxCGRT_CHN_differentiated_withnotes_" year ".csv")}' 'data/China/OxCGRT_CHN_differentiated_withnotes.csv'
           rm 'data/China/OxCGRT_CHN_differentiated_withnotes.csv'
+          
+          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new&countryCode=IND' -s -f -o 'data/China/OxCGRT_IND_latest.csv'
+          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes&countryCode=IND' -s -f -o 'data/China/OxCGRT_IND_differentiated_withnotes.csv'
+          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("data/China/OxCGRT_IND_differentiated_withnotes_" year ".csv"); files[year]=1}; print $0 > ("data/China/OxCGRT_IND_differentiated_withnotes_" year ".csv")}' 'data/China/OxCGRT_IND_differentiated_withnotes.csv'
+          rm 'data/China/OxCGRT_IND_differentiated_withnotes.csv'  
+          rm 'data/China/OxCGRT_IND_differentiated_withnotes_2020.csv'
+          
 
       - name: Commit changes
         run: |
