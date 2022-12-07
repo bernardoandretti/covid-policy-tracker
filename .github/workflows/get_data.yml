@@ -58,11 +58,11 @@ jobs:
           awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("data/China/OxCGRT_CHN_differentiated_withnotes_" year ".csv"); files[year]=1}; print $0 > ("data/China/OxCGRT_CHN_differentiated_withnotes_" year ".csv")}' 'data/China/OxCGRT_CHN_differentiated_withnotes.csv'
           rm 'data/China/OxCGRT_CHN_differentiated_withnotes.csv'
           
-          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new&countryCode=IND' -s -f -o 'data/China/OxCGRT_IND_latest.csv'
-          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes&countryCode=IND' -s -f -o 'data/China/OxCGRT_IND_differentiated_withnotes.csv'
-          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("data/China/OxCGRT_IND_differentiated_withnotes_" year ".csv"); files[year]=1}; print $0 > ("data/China/OxCGRT_IND_differentiated_withnotes_" year ".csv")}' 'data/China/OxCGRT_IND_differentiated_withnotes.csv'
-          rm 'data/China/OxCGRT_IND_differentiated_withnotes.csv'  
-          rm 'data/China/OxCGRT_IND_differentiated_withnotes_2020.csv'
+          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=compressed_new&countryCode=IND' -s -f -o 'data/India/OxCGRT_IND_latest.csv'
+          curl 'https://oxcgrtportal.azurewebsites.net/api/csvdownload?type=differentiated_notes&countryCode=IND' -s -f -o 'data/India/OxCGRT_IND_differentiated_withnotes.csv'
+          awk -F "," 'NR==1 {header=$0}; NF>1 && NR>1 {year=substr($6,1,4); if(! files[year]) {print header > ("data/India/OxCGRT_IND_differentiated_withnotes_" year ".csv"); files[year]=1}; print $0 > ("data/India/OxCGRT_IND_differentiated_withnotes_" year ".csv")}' 'data/India/OxCGRT_IND_differentiated_withnotes.csv'
+          rm 'data/India/OxCGRT_IND_differentiated_withnotes.csv'  
+          rm 'data/India/OxCGRT_IND_differentiated_withnotes_2020.csv'
           
 
       - name: Commit changes
